@@ -1,112 +1,291 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Num'n Prod | Artisanat logiciel</title>
+  <title>Num'n Prod | Logiciels sur mesure pour les acteurs de territoire</title>
+  <meta name="description"
+    content="Développement logiciel sur mesure pour les structures d'intérêt général ancrées sur leur territoire : outils internes, data visualisation, valorisation de territoire. Démo jouable offerte avant tout engagement.">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TRXK00TH7D"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-TRXK00TH7D');
-  </script>
-
-  <meta property="og:title" content="Num'n Prod | Artisanat Logiciel">
+  <meta property="og:title" content="Num'n Prod | Logiciels sur mesure pour les acteurs de territoire">
   <meta property="og:site_name" content="Num'n Prod">
   <meta property="og:url" content="https://www.numnprod.fr">
   <meta property="og:description"
-    content="Basée à Mende, en Lozère, Num'n Prod est un agence de développement logiciel sur mesure">
+    content="Des logiciels qui servent vraiment, avec un gain observable. Démo jouable offerte avant de vous engager.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.numnprod.fr/logo.jpg">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <style>
+    :root {
+      --bg: #2E3136;
+      --bg-alt: #272a2e;
+      --card: #363a40;
+      --primary: #6570B1;
+      --accent: #77BEEC;
+      --text: #f2f4f7;
+      --muted: #b8bec7;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
     body {
-      min-height: 100vh;
-      font-family: 'Roboto Serif', sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.65;
+      font-size: 1.05rem;
     }
 
-    .legend {
-      font-size: 10px;
-      line-height: 10px;
+    h1, h2, h3 { font-family: 'Roboto Serif', Georgia, serif; line-height: 1.2; margin: 0 0 .6em; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+    h3 { font-size: 1.2rem; }
+    a { color: var(--accent); }
+    p { margin: 0 0 1em; }
+
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.25rem; }
+    section { padding: 4.5rem 0; }
+    section.alt { background: var(--bg-alt); }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: .8rem; font-weight: 600; margin-bottom: .8rem; }
+    .lead { font-size: 1.2rem; color: var(--muted); max-width: 46rem; }
+
+    /* Header */
+    header { padding: 1.25rem 0; }
+    header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    header img { height: 44px; width: auto; }
+    .brand { display: flex; align-items: center; gap: .75rem; color: var(--text); text-decoration: none; font-family: 'Roboto Serif', Georgia, serif; font-size: 1.35rem; font-weight: 600; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block; padding: .85rem 1.5rem; border-radius: 999px;
+      background: var(--primary); color: #fff; text-decoration: none; font-weight: 600;
+      border: 2px solid var(--primary); transition: transform .15s, background .15s;
+    }
+    .btn:hover { background: #7782c4; transform: translateY(-2px); }
+    .btn.ghost { background: transparent; border-color: var(--accent); color: var(--accent); }
+    .btn.ghost:hover { background: rgba(119, 190, 236, .12); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+
+    /* Hero */
+    .hero { padding: 4rem 0 5rem; }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+
+    /* Grids & cards */
+    .grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 2rem; }
+    .card { background: var(--card); border-radius: var(--radius); padding: 1.5rem; border: 1px solid rgba(255, 255, 255, .06); }
+    .card p { color: var(--muted); margin: 0; }
+    .tag { display: inline-block; font-size: .75rem; font-weight: 600; padding: .2rem .7rem; border-radius: 999px; margin-bottom: .8rem; background: rgba(119, 190, 236, .15); color: var(--accent); }
+    .tag.paid { background: rgba(101, 112, 177, .3); color: #c5cbf0; }
+
+    .steps { counter-reset: s; }
+    .steps .card { position: relative; padding-top: 2.6rem; }
+    .steps .card::before {
+      counter-increment: s; content: counter(s);
+      position: absolute; top: -1rem; left: 1.5rem; width: 2.2rem; height: 2.2rem; border-radius: 50%;
+      background: var(--primary); display: grid; place-items: center; font-weight: 600;
     }
 
-    .legend a {
-      color: inherit;
-      text-decoration: none;
-    }
+    ul.clean { list-style: none; padding: 0; margin: 1.2rem 0 0; }
+    ul.clean li { padding-left: 1.6rem; position: relative; margin-bottom: .6rem; }
+    ul.clean li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+
+    .two-col { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+    @media (min-width: 800px) { .two-col { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+    .refs a { font-weight: 600; }
+
+    /* Cal embed */
+    #cal-embed { min-height: 560px; background: #fff; border-radius: var(--radius); overflow: hidden; margin-top: 2rem; }
+    .cal-fallback { text-align: center; margin-top: 1rem; font-size: .95rem; color: var(--muted); }
+
+    footer { padding: 2rem 0 2.5rem; font-size: .85rem; color: var(--muted); text-align: center; border-top: 1px solid rgba(255, 255, 255, .08); }
   </style>
-
 </head>
 
-<body id="body">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <img src="logo.png" class="d-none d-md-block my-5 w-50 mx-auto">
-        <img src="logo_v.png" class="d-md-none my-2 w-100 mx-auto">
-      </div>
-      <div class="col-12 col-md-2 d-none d-md-flex">
-        <img src="code.jpg" class="img-fluid rounded">
-      </div>
-
-      <div class="col-12 col-md-10 text-white p-3 fs-5">
-        <p>Basée à Mende, en Lozère, Num'n Prod est une agence de développement logiciel sur mesure.</p>
-        <p>Nous vous accompagnons dans la création de votre projet et nous vous proposons des solutions adaptées à vos
-          besoins, que cela soit pour des projets de
-          digitalisation/dématérialisation ou des projets d'optimisation de vos process.</p>
-        <p>Au-delà de la réalisation de logiciels sur mesure, c’est la découverte et la compréhension du métier de nos
-          clients qui nous passionnent.</p>
-      </div>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="#" aria-label="Num'n Prod, accueil">
+        <img src="logo.svg" alt="">
+        <span>Num'n Prod</span>
+      </a>
+      <a class="btn ghost" href="#rdv">Prendre rendez-vous</a>
     </div>
-  </div>
-  <footer class="d-none d-md-inline fixed-bottom">
-    <div class="container text-center text-white fs-6">
-      <span>Num'n Prod - SARL au capital social de 1000 € <br>
-        12 rue Albert Einstein 48000 Mende, France <br>
-        NAF/APE : 6201Z - SIRET : 85042124900010<br></span>
-      <span class="legend text-muted">Crédit photo <a
-          href="https://unsplash.com/@weareprocreator?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Procreator
-          UX Design Studio</a> / <a
-          href="https://unsplash.com/s/photos/coder?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Développement logiciel sur mesure</p>
+        <h1>Des logiciels qui servent vraiment, <em>au service de votre territoire.</em></h1>
+        <p class="lead">J'accompagne les structures d'intérêt général ancrées sur leur territoire : collectivités, parcs
+          naturels, associations. Des outils internes et des visualisations de données qui apportent un gain concret
+          et observable.</p>
+        <p class="lead"><strong>Avant de vous engager, vous voyez le résultat :</strong> je vous propose une démo
+          jouable, offerte.</p>
+        <div class="cta-row">
+          <a class="btn" href="#rdv">Réserver un échange de 15 min</a>
+          <a class="btn ghost" href="#offre">Découvrir l'offre</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- POUR QUI / QUOI -->
+    <section class="alt" id="missions">
+      <div class="wrap">
+        <p class="eyebrow">Ce que je fais</p>
+        <h2>Un numérique qui rassemble, décrypte et autonomise</h2>
+        <p class="lead">Je conçois des outils sur mesure, pensés pour les équipes qui les utilisent, pas pour
+          les enfermer dans une dépendance.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Outils internes</h3>
+            <p>Suivi d'activité, gestion de données métier, dématérialisation de process : des applications simples,
+              adaptées à votre façon de travailler.</p>
+          </div>
+          <div class="card">
+            <h3>Data visualisation</h3>
+            <p>Présenter clairement les résultats d'un programme, d'un suivi ou d'un observatoire : cartes, tableaux de
+              bord, indicateurs lisibles par tous.</p>
+          </div>
+          <div class="card">
+            <h3>Valorisation de territoire</h3>
+            <p>Rendre l'information accessible : environnement, biodiversité, patrimoine, protection du territoire.</p>
+          </div>
+        </div>
+        <p style="margin-top:2rem;color:var(--muted)">Je ne réalise pas de sites vitrines à visée purement
+          commerciale ou marketing : mon terrain, ce sont les outils qui servent un projet.</p>
+      </div>
+    </section>
+
+    <!-- OFFRE -->
+    <section id="offre">
+      <div class="wrap">
+        <p class="eyebrow">Ma façon de travailler</p>
+        <h2>Vous voyez avant de vous engager</h2>
+        <p class="lead">Une démarche en trois étapes, qui limite le risque pour vous.</p>
+        <div class="grid steps">
+          <div class="card">
+            <span class="tag">Offert</span>
+            <h3>Diagnostic &amp; spécification</h3>
+            <p>Après un premier échange, je clarifie votre besoin et vous remets une spécification : ce que l'outil
+              doit faire, et ce qu'il ne doit pas faire.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Offert</span>
+            <h3>Démo jouable</h3>
+            <p>Je construis une démonstration que vous pouvez manipuler, pour vous projeter concrètement et mesurer le
+              potentiel, avant toute signature.</p>
+          </div>
+          <div class="card">
+            <span class="tag paid">Sur devis</span>
+            <h3>Développement sur mesure</h3>
+            <p>Si la démo vous convainc, je développe l'outil complet, au forfait, ajusté à votre budget. Le code
+              vous appartient.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- A PROPOS -->
+    <section class="alt" id="apropos">
+      <div class="wrap two-col">
+        <div>
+          <p class="eyebrow">Qui est derrière Num'n Prod</p>
+          <h2>Alban Tiberghien</h2>
+          <p>Ingénieur logiciel avec plus de 15 ans d'expérience, spécialisé Python / Django, data et IA. J'aime
+            comprendre en profondeur le métier de mes clients avant d'écrire la moindre ligne de code.</p>
+          <p>Je mets cette expertise au service de projets porteurs de sens, auprès d'acteurs qui connaissent leur
+            territoire mieux que quiconque.</p>
+        </div>
+        <div>
+          <h3>Quelques réalisations</h3>
+          <ul class="clean refs">
+            <li><a href="https://assoc-action.fr" target="_blank" rel="noopener">assoc-action.fr</a></li>
+            <li><a href="https://lamaisonreconnectee.fr" target="_blank" rel="noopener">lamaisonreconnectee.fr</a></li>
+            <li>makerscience.fr <span style="color:var(--muted)">(hors ligne)</span></li>
+            <li>imaginationforpeople.org <span style="color:var(--muted)">(hors ligne)</span></li>
+            <li>gevauchan-achats.com <span style="color:var(--muted)">(hors ligne)</span></li>
+          </ul>
+          <h3 style="margin-top:2rem">Mes convictions</h3>
+          <ul class="clean">
+            <li>Rassembler plutôt que diviser</li>
+            <li>Aider à décrypter plutôt que désinformer</li>
+            <li>Permettre de s'affranchir plutôt que formater ou rendre dépendant</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- RDV -->
+    <section id="rdv">
+      <div class="wrap">
+        <p class="eyebrow">Parlons de votre projet</p>
+        <h2>Réservez un échange de 15 minutes</h2>
+        <p class="lead">Un appel téléphonique, sans engagement, pour comprendre votre besoin. Choisissez directement
+          un créneau dans mon agenda.</p>
+        <div id="cal-embed"></div>
+        <p class="cal-fallback">L'agenda ne s'affiche pas ?
+          <a id="cal-fallback-link" href="https://cal.com/alban-tiberghien-i0tkec/15min" target="_blank" rel="noopener">Ouvrir la
+            page de réservation</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Num'n Prod - SASU au capital social de 1000 €<br>
+      NAF/APE : 6201Z - SIRET : 85042124900010
     </div>
   </footer>
-  <footer class="d-md-none text-center w-100">
-    <span>Num'n Prod - SARL <br>
-      Capital social de 1000€ <br>
-      12 rue Albert Einstein 48000 Mende, France <br>
-      NAF/APE : 6201Z - SIRET : 85042124900010<br></span>
-    </div>
-  </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.waves.min.js"></script>
   <script>
-    VANTA.WAVES({
-      el: "#body",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: 0x434343
-    })
+    const CAL_LINK = "alban-tiberghien-i0tkec/15min";
+
+    document.getElementById("cal-fallback-link").href = "https://cal.com/" + CAL_LINK;
+
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1]; api.q = api.q || [];
+          if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+          else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+
+    Cal("init", { origin: "https://app.cal.com" });
+    Cal("inline", {
+      elementOrSelector: "#cal-embed",
+      calLink: CAL_LINK,
+      layout: "month_view"
+    });
+    Cal("ui", {
+      theme: "light",
+      styles: { branding: { brandColor: "#6570B1" } },
+      hideEventTypeDetails: false,
+      layout: "month_view"
+    });
   </script>
-
-
 </body>
 
 </html>
